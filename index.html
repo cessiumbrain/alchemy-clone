@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .grid-container{
+        display: grid;
+        border: 1px solid black;
+        grid-template-columns:  1fr 1fr 1fr;
+    }
+
+    .item {
+        height: auto;
+        min-height: 20px;
+        width: 100%;
+        border: 1px solid red
+    }
+
+    .next-symbol{
+        border: 2px solid black
+    }
+</style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="item" data-row='1' data-column="a"></div>
+        <div class="item" data-row='1' data-column="b"></div>
+        <div class="item" data-row="1" data-column="c"></div>
+        <div class="item" data-row='2' data-column="'a"></div>
+        <div class="item" data-row="2" data-column="b"></div>
+        <div class="item" data-row="2" data-column="c"></div>
+        <div class="item" data-row="3" data-column="a"></div>
+        <div class="item" data-row="3" data-column="b"></div>
+        <div class="item" data-row="3" data-column="c"></div>
+    </div>
+    <div class="next-symbol">
+
+    </div>
+    <button class="test-button" onclick="createNewGamePiece()">Test</button>
+    <script src="script.js" type="module">
+
+    </script>
+        
+</body>
+</html>
