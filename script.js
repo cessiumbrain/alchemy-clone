@@ -57,7 +57,6 @@ const pieceList = [BlueZero]
 const onBoardClick = (e) =>{
     //set variables to reference the row and column
     const currentPiece = pieceList.at(-1)
-    console.log(currentPiece)
     const clickedRow = e.target.dataset.row
     const clickedColumn = e.target.dataset.column
 
@@ -65,26 +64,57 @@ const onBoardClick = (e) =>{
 
     //function testing if space is occupied
     const isSpaceOccupied = () =>{
+
         let value=false
         if(gameBoard[clickedColumn][clickedRow]){
             value = true
         }
+
         return value
     }
     
     //function testing if column adjacent spaces have matching symbol
-    //create array of values in the column
-    const columnPieces = Object.values(gameBoard[clickedColumn])
-    console.log(columnPieces)
-    let columnSymbols = [];
-    columnPieces.forEach(piece =>{
-        if(piece){
-            columnSymbols.push(piece.symbol)
-        } else {
-            columnSymbols.push(null)
+    const checkSymbols = () =>{
+        const checkColumnSymbols = () =>{
+            let isMatch = false
+            //get currentPiece's symbol
+            const currentSymbol = currentPiece.symbol
+            console.log(currentSymbol)
+            //create array of symbols in the column
+            const columnPieces = Object.values(gameBoard[clickedColumn])
+            let columnSymbols = [];
+            columnPieces.forEach(piece =>{
+                if(piece){
+                    columnSymbols.push(piece.symbol)
+                } else {
+                    columnSymbols.push(null)
+                }
+            })
+            const columnIndex = clickedRow -1
+            //check plus and minus one in the index-if there's a matching symbol in either, set isMatch to true
+
+            if(columnSymbols[columnIndex -1]===currentSymbol || columnSymbols[columnIndex + 1]=== currentSymbol){
+                isMatch = true
+            }
+            return isMatch   
+          
+
         }
-    })
-    console.log(columnSymbols)
+        const checkRowSymbols = () =>{
+
+        }
+
+        console.log(checkColumnSymbols())
+            
+    }
+    if(isSpaceOccupied()){
+        console.log('space is occupied')
+    } else {
+        checkSymbols()
+    }
+    
+    
+    
 }
 
 //apply click listener
