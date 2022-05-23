@@ -48,9 +48,7 @@ const gameBoard = {
         1:null,
         2: null,
         3: null
-    },
-
-    queueOne: null,
+    }
 }
 const pieceList = [BlueZero]
 
@@ -75,13 +73,17 @@ const onBoardClick = (e) =>{
     
     //function testing if column adjacent spaces have matching symbol
     const checkSymbols = () =>{
+        //get currentPiece's symbol
+        const currentSymbol = currentPiece.symbol
+        const columnPieces = Object.values(gameBoard[clickedColumn])
+        const boardArray = Object.keys(gameBoard)
+
+
         const checkColumnSymbols = () =>{
             let isMatch = false
-            //get currentPiece's symbol
-            const currentSymbol = currentPiece.symbol
-            console.log(currentSymbol)
+
             //create array of symbols in the column
-            const columnPieces = Object.values(gameBoard[clickedColumn])
+ 
             let columnSymbols = [];
             columnPieces.forEach(piece =>{
                 if(piece){
@@ -101,10 +103,52 @@ const onBoardClick = (e) =>{
 
         }
         const checkRowSymbols = () =>{
+            let isMatch = false
+            
+            //create array of pieces in the row
+            let rowPieces = []
+            //and array of symbols
+            let rowSymbols= []
+            //iterate through each column object and take the value in the particular row slot
+            let columnIndex = null
+            //convert column letter index to number
+            switch(clickedColumn){
+                case 'a':
+                    columnIndex = 0;
+                break;
+                case 'b':
+                    columnIndex = 1;
+                break;
+                case 'c':
+                    columnIndex = 2;
+                break;
+            }
+
+            //create and array of column objects on the board
+            const columnArray = Object.values(gameBoard)
+
+            //for each column object in the array, go through and push the value for the key corresponding to the clicked row ()
+            columnArray.forEach(column=>{
+
+                rowPieces.push(column[clickedRow])})
+
+            console.log(rowPieces)
+            rowSymbols = rowPieces.map(piece=>{
+                return piece?.symbol
+            })
+            console.log(rowSymbols)
+            
+            if(currentSymbol===rowSymbols[columnIndex-1] || currentSymbol===rowSymbols[columnIndex +1]){
+                isMatch= true
+            }
+
+            return isMatch
+
 
         }
+        console.log(checkRowSymbols())
 
-        console.log(checkColumnSymbols())
+        // checkColumnSymbols()
             
     }
     if(isSpaceOccupied()){
