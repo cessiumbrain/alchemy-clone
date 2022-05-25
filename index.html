@@ -19,8 +19,14 @@
         border: 1px solid red
     }
 
-    .next-symbol{
-        border: 2px solid black
+    .next-piece,.discard{
+        border: 2px solid black;
+        height: 100px;
+        width: 100px;
+    }
+
+    .center-block{
+        background-color: grey
     }
 </style>
 </head>
@@ -30,15 +36,16 @@
         <div class="item" data-row='1' data-column="b"></div>
         <div class="item" data-row="1" data-column="c"></div>
         <div class="item" data-row='2' data-column="a"></div>
-        <div class="item" data-row="2" data-column="b"></div>
+        <div class="item center-block" data-row="2" data-column="b"></div>
         <div class="item" data-row="2" data-column="c"></div>
         <div class="item" data-row="3" data-column="a"></div>
         <div class="item" data-row="3" data-column="b"></div>
         <div class="item" data-row="3" data-column="c"></div>
     </div>
-    <div class="next-symbol">
+    <div class="next-piece">
 
     </div>
+    <div class="discard"></div>
     <button class="test-button" onclick="createNewGamePiece()">Test</button>
     <script src="script.js" type="module">
 
